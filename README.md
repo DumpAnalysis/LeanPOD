@@ -3,8 +3,8 @@
 **Using Lean in Pattern-Oriented Diagnostics**  
 Dmitry Vostokov | [DumpAnalysis.org](https://DumpAnalysis.org)
 
-This repository contains the reproducible examples accompanying my article
-*Using Lean in Pattern-Oriented Diagnostics*. I use Lean to make diagnostic
+This repository contains the reproducible examples accompanying our article
+*Using Lean in Pattern-Oriented Diagnostics*. We use Lean to make diagnostic
 assumptions explicit and check what follows from them.
 
 The examples are constructed teaching cases. Their proofs concern the supplied
