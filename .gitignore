@@ -1,0 +1,7 @@
+.lake/
+*.olean
+*.ilean
+__pycache__/
+*.py[cod]
+app_path_compat.so
+.DS_Store

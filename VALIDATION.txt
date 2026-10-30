@@ -1,0 +1,45 @@
+Validation record
+Date: 2026-10-15
+System: Linux x86_64
+Toolchain: leanprover/lean4:v4.19.0
+Version output:
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+
+Official binary distribution:
+https://github.com/leanprover/lean4/releases/download/v4.19.0/lean-4.19.0-linux.tar.zst
+
+The project build, four positive examples, and four deliberate rejections were
+executed. The Python verification script reported All 10 checks passed, including
+its version check. verification-output.txt preserves the command output.
+
+Original execution environment adaptation:
+Lean 4.19.0 looks up its executable using /proc/<getpid()>/exe. This environment
+could resolve /proc/self/exe but not the numeric form. An LD_PRELOAD shim redirected
+only that same-process readlink request to /proc/self/exe. This was a path-resolution
+compatibility change. No Lean executable, shared library, proof kernel, theorem,
+or standard-library file was edited. The shim source is included under validation/.
+Its SHA-256 is included in SHA256SUMS.txt. No compiled shim is distributed.
+
+The shim was built using:
+gcc -shared -fPIC validation/app_path_compat.c -o app_path_compat.so -ldl
+
+Normal installations should run the documented Lake commands without this shim.
+It is not required by the examples and is not part of their logical assumptions.
+
+Audited displayed theorem dependencies:
+Intro.three_waiters: none
+WaitChain.chain_11_33: propext, Quot.sound
+WaitChain.wrong_witness: propext, Quot.sound
+WaitChain.cycle_11: propext, Quot.sound
+Deadlock.locked_stuck: none
+Deadlock.timeout_escape: none
+Deadlock.timeout_not_stuck: none
+Deadlock.second_finishes: none
+MissingMessage.absence_with_coverage: none
+MissingMessage.conditional_case: propext
+MissingMessage.lossy_counterexample: propext
+MissingMessage.lossy_not_complete: propext
+
+No positive source uses sorry, admit, a custom axiom, or native_decide.
+The audit concerns the formal theorems, not the fidelity of any real-world
+capture or an implemented diagnostic extraction pipeline.

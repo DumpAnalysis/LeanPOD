@@ -1,0 +1,70 @@
+=== Lean 4.19.0 | exit 0 ===
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+
+=== project build | exit 0 ===
+ℹ [2/7] Replayed Intro
+info: ././././Intro.lean:7:0: 3
+info: ././././Intro.lean:16:0: 'Intro.three_waiters' does not depend on any axioms
+ℹ [3/7] Replayed WaitChain
+info: ././././WaitChain.lean:21:0: true
+info: ././././WaitChain.lean:22:0: false
+info: ././././WaitChain.lean:40:0: 'WaitChain.chain_11_33' depends on axioms: [propext, Quot.sound]
+info: ././././WaitChain.lean:41:0: 'WaitChain.wrong_witness' depends on axioms: [propext, Quot.sound]
+info: ././././WaitChain.lean:42:0: 'WaitChain.cycle_11' depends on axioms: [propext, Quot.sound]
+ℹ [4/7] Replayed Deadlock
+info: ././././Deadlock.lean:52:0: 'Deadlock.locked_stuck' does not depend on any axioms
+info: ././././Deadlock.lean:53:0: 'Deadlock.timeout_escape' does not depend on any axioms
+info: ././././Deadlock.lean:54:0: 'Deadlock.timeout_not_stuck' does not depend on any axioms
+info: ././././Deadlock.lean:55:0: 'Deadlock.second_finishes' does not depend on any axioms
+ℹ [5/7] Replayed MissingMessage
+info: ././././MissingMessage.lean:46:0: 'MissingMessage.absence_with_coverage' does not depend on any axioms
+info: ././././MissingMessage.lean:47:0: 'MissingMessage.conditional_case' depends on axioms: [propext]
+info: ././././MissingMessage.lean:48:0: 'MissingMessage.lossy_counterexample' depends on axioms: [propext]
+info: ././././MissingMessage.lean:49:0: 'MissingMessage.lossy_not_complete' depends on axioms: [propext]
+Build completed successfully.
+
+=== Intro.lean | exit 0 ===
+3
+'Intro.three_waiters' does not depend on any axioms
+
+=== WaitChain.lean | exit 0 ===
+true
+false
+'WaitChain.chain_11_33' depends on axioms: [propext, Quot.sound]
+'WaitChain.wrong_witness' depends on axioms: [propext, Quot.sound]
+'WaitChain.cycle_11' depends on axioms: [propext, Quot.sound]
+
+=== Deadlock.lean | exit 0 ===
+'Deadlock.locked_stuck' does not depend on any axioms
+'Deadlock.timeout_escape' does not depend on any axioms
+'Deadlock.timeout_not_stuck' does not depend on any axioms
+'Deadlock.second_finishes' does not depend on any axioms
+
+=== MissingMessage.lean | exit 0 ===
+'MissingMessage.absence_with_coverage' does not depend on any axioms
+'MissingMessage.conditional_case' depends on axioms: [propext]
+'MissingMessage.lossy_counterexample' depends on axioms: [propext]
+'MissingMessage.lossy_not_complete' depends on axioms: [propext]
+
+=== expected rejection of FalseCount.lean | exit 1 ===
+negative/FalseCount.lean:4:41: error: tactic 'decide' proved that the proposition
+  Intro.waiters.length = 4
+is false
+
+=== expected rejection of FalseChain.lean | exit 1 ===
+negative/FalseChain.lean:6:2: error: tactic 'decide' proved that the proposition
+  (11, 22) ∈ WaitChain.captured ∧ (22, 44) ∈ WaitChain.captured
+is false
+
+=== expected rejection of FalseDeadlock.lean | exit 1 ===
+negative/FalseDeadlock.lean:5:2: error: type mismatch
+  Deadlock.locked_stuck
+has type
+  Deadlock.Stuck false Deadlock.locked : Prop
+but is expected to have type
+  Deadlock.Stuck true Deadlock.locked : Prop
+
+=== expected rejection of FalseAbsence.lean | exit 1 ===
+negative/FalseAbsence.lean:5:37: error: tactic 'decide' proved that the proposition
+  ¬MissingMessage.Event.finish 7 ∈ MissingMessage.actualLossy
+is false

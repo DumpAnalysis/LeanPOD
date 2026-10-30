@@ -1,0 +1,7 @@
+name = "pattern_diagnostics"
+version = "0.1.0"
+defaultTargets = ["Diagnostics"]
+
+[[lean_lib]]
+name = "Diagnostics"
+roots = ["Intro", "WaitChain", "Deadlock", "MissingMessage", "Diagnostics"]
